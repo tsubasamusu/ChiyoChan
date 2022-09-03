@@ -830,13 +830,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: 0
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: f9c88c906b9d7354b87a09333bc072e8, type: 3}
   - name: 1
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0895f5a0093966c489cd9438270ee7f7, type: 3}
   - name: 2
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0dcf029f57a81504ebb2306af9ad6a2b, type: 3}
   - name: 3
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 016b13c462470bb458ab22c33f54a1c1, type: 3}
 --- !u!4 &1149432234
 Transform:
   m_ObjectHideFlags: 0
