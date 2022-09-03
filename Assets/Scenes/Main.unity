@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 1839597941}
   m_Layer: 0
   m_Name: Goal
-  m_TagString: Untagged
+  m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8496,6 +8496,7 @@ GameObject:
   - component: {fileID: 4797549782896624356}
   - component: {fileID: 4797549782896624357}
   - component: {fileID: 4797549782896624359}
+  - component: {fileID: 4797549782896624360}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -8517,6 +8518,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTran: {fileID: 7931308475746686723}
   smooth: 1
+--- !u!45 &4797549782896624360
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4797549782896624358}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!4 &4805270142775812858
 Transform:
   m_ObjectHideFlags: 0
@@ -12609,6 +12619,7 @@ GameObject:
   - component: {fileID: 7931308475746686723}
   - component: {fileID: 7931308475746686722}
   - component: {fileID: 7931308475746686724}
+  - component: {fileID: 7931308475746686725}
   m_Layer: 0
   m_Name: "\u5343\u4EE3\u6D66\u8776\u7F8E"
   m_TagString: Untagged
@@ -13690,6 +13701,19 @@ MonoBehaviour:
   gravity: 2
   restartKey: 114
   rb: {fileID: 7931308475746686722}
+--- !u!65 &7931308475746686725
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7303285698467810745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 0.7}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &7933628648631254494
 Transform:
   m_ObjectHideFlags: 0

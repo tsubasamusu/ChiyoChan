@@ -113,6 +113,20 @@ public class BodyController : MonoBehaviour
     }
 
     /// <summary>
+    /// 他のコライダーがすり抜けた際に呼び出される
+    /// </summary>
+    /// <param name="other">触れた相手</param>
+    private void OnTriggerEnter(Collider other)
+    {
+        //ゴール用オブジェクトに触れたら
+        if(other.gameObject.CompareTag("Goal"))
+        {
+            Debug.Log("Clear");
+            //TODO:GameManagerからゲームクリア処理を呼び出す
+        }
+    }
+
+    /// <summary>
     /// BodyControllerの初期設定を行う
     /// </summary>
     private void SetUpBodyController()
