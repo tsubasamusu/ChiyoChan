@@ -27,25 +27,9 @@ public class UIManager : MonoBehaviour
     private float timer;//経過時間計測用
 
     /// <summary>
-    /// ゲーム開始直後に呼び出される
-    /// </summary>
-    /// <returns>待ち時間</returns>
-    private IEnumerator Start()
-    {
-        //UIの初期設定を行う
-        SetUpUI();
-
-        yield return StartCoroutine(PlayGameStart());
-
-        yield return StartCoroutine(PlayGameClear());
-
-        Debug.Log("End");
-    }
-
-    /// <summary>
     /// UIの初期設定を行う
     /// </summary>
-    private void SetUpUI()
+    public void SetUpUI()
     {
         //背景を白色に設定
         imgBackground.color = Color.white;
