@@ -212,6 +212,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194160690}
+  - component: {fileID: 194160691}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -234,6 +235,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &194160691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194160689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 259c4837253b96944ba3e92e64a4e392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imgBackground: {fileID: 600757428}
+  imgLogo: {fileID: 284472847}
+  txtTime: {fileID: 1984601034}
+  txtLength: {fileID: 1254987}
+  sprGameStart: {fileID: 21300000, guid: 26cc6aeb786cbb349a737eb0d5053128, type: 3}
+  sprGameClear: {fileID: 21300000, guid: 110e0e3255b802b41b924fe8275a3f08, type: 3}
 --- !u!1 &284472845
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +441,7 @@ GameObject:
   - component: {fileID: 600757429}
   - component: {fileID: 600757428}
   m_Layer: 5
-  m_Name: imgBackGround
+  m_Name: imgBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
