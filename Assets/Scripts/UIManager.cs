@@ -24,6 +24,12 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Sprite sprGameClear;//ゲームクリアロゴ
 
+    [SerializeField]
+    private Transform playerTran;//プレーヤーの位置情報
+
+    [SerializeField]
+    private Transform goalTran;//ゴールの位置情報
+
     private float timer;//経過時間計測用
 
     /// <summary>
@@ -98,5 +104,37 @@ public class UIManager : MonoBehaviour
 
         //演出が終わるまで待つ
         yield return new WaitUntil(() => end);
+    }
+
+    /// <summary>
+    /// 「経過時間」「ゴールまでの距離」のテキストの更新を開始する
+    /// </summary>
+    /// <returns>待ち時間</returns>
+    public IEnumerator StartUpdateText()
+    {
+        //無限に繰り返す
+        while(true)
+        {
+            //ゴールまでの距離を計算して表示
+            txtLength.text = (goalTran.position.z - playerTran.position.z).ToString("F2")+"m\nTo Goal";
+
+            //経過時間を計測
+            timer+=Time.deltaTime;
+
+            //経過時間を表示
+            txtTime.text=timer.ToString("F2")+ "\nSecond";
+
+            //次のフレームへ飛ばす（実質、Updateメソッド）
+            yield return null;
+        }
+    }
+
+    /// <summary>
+    /// 経過時間を初期化する
+    /// </summary>
+    public void ResetTimer()
+    {
+        //経過時間を0秒にする
+        timer = 0f;
     }
 }
