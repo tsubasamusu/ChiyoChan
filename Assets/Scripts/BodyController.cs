@@ -33,7 +33,7 @@ public class BodyController : MonoBehaviour
 
     private List<Transform> firstPartsTransList=new List<Transform>();//各部位の初期の位置情報
 
-    [SerializeField,Header("一定時間（約0.02秒）ごとに回転させる足の角度")]
+    [SerializeField,Header("一定時間（約0.02秒）ごとに回転させる足の角度"),Range(0f,10f)]
     private float rotAngle;//一定時間（約0.02秒）ごとに回転させる足の角度
 
     [SerializeField,Range(0f,80f)]
@@ -44,6 +44,9 @@ public class BodyController : MonoBehaviour
 
     [SerializeField, Range(0f, 180f)]
     private float maxArmAngle;//腕の関節の最大角度
+
+    [SerializeField,Range(0f,10f)]
+    private float gravity;//重力
 
     [SerializeField]
     private KeyCode restartKey;//ゲーム再スタートキー
@@ -78,8 +81,9 @@ public class BodyController : MonoBehaviour
             //処理を実行
             PlayW();
         }
+
         //「O」を押されている間
-        else if (Input.GetKey(KeyCode.O))
+        if (Input.GetKey(KeyCode.O))
         {
             //処理を実行
             PlayO();
@@ -110,6 +114,9 @@ public class BodyController : MonoBehaviour
             //繰り返し処理で得た要素の位置情報をリストに登録
             firstPartsTransList.Add(partsDataList[i].partsTran);
         }
+
+        //重力を設定
+        Physics.gravity = new Vector3(0f, -gravity, 0f);
     }
 
     /// <summary>
