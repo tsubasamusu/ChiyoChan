@@ -31,6 +31,9 @@ public class UIManager : MonoBehaviour
     private Transform goalTran;//ゴールの位置情報
 
     [SerializeField]
+    private Transform resultTran;//結果表示位置
+
+    [SerializeField]
     private GameManager gameManager;//GameManager
 
     private float timer;//経過時間計測用
@@ -97,7 +100,7 @@ public class UIManager : MonoBehaviour
         imgLogo.DOFade(1f, 1f);
 
         //経過時間を適切な位置に移動させる
-        txtTime.transform.DOMoveX(900f, 1f);
+        txtTime.transform.DOMove(resultTran.position, 1f);
 
         //テキストの色を変化させる
         txtTime.DOColor(Color.blue, 1f);
