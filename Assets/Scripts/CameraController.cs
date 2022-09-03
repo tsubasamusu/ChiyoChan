@@ -24,6 +24,6 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         //カメラの位置を更新
-        transform.position = new Vector3(targetTran.position.x,firstPos.y,firstPos.z);
+        transform.position = new Vector3(firstPos.x,firstPos.y,targetTran.position.z);
     }
 }
