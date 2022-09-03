@@ -31,8 +31,6 @@ public class BodyController : MonoBehaviour
     [SerializeField]
     private List<PartsData> partsDataList = new List<PartsData>();//体の部位のデータのリスト
 
-    private List<Vector3> firstPartsLocalEulerAnglesList=new List<Vector3>();//各部位の初期の角度
-
     [SerializeField,Header("一定時間（約0.02秒）ごとに回転させる足の角度"),Range(0f,10f)]
     private float rotAngle;//一定時間（約0.02秒）ごとに回転させる足の角度
 
@@ -51,7 +49,10 @@ public class BodyController : MonoBehaviour
     [SerializeField]
     private KeyCode restartKey;//ゲーム再スタートキー
 
-    private Transform firstTran;//初期の位置情報
+    [SerializeField]
+    private Rigidbody rb;//Rigidbody
+
+    private List<Vector3> firstPartsLocalEulerAnglesList = new List<Vector3>();//各部位の初期の角度
 
     private int rightLegCount;//右足を前に動かす処理が呼び出された回数
 
@@ -347,6 +348,9 @@ public class BodyController : MonoBehaviour
     /// </summary>
     private void Restart()
     {
+        //一旦、物理演算をクリアにする
+        rb.isKinematic = true;
+
         //各部位のデータのリストの要素数だけ繰り返す
         for (int i = 0; i < partsDataList.Count; i++)
         {
@@ -354,16 +358,13 @@ public class BodyController : MonoBehaviour
             partsDataList[i].partsTran.localEulerAngles = firstPartsLocalEulerAnglesList[i];
         }
 
-        //キャラクターを初期位置に移動させる
-        transform.position = Vector3.zero;
-
-        //キャラクターの角度を初期状態に戻す
-        transform.eulerAngles = Vector3.zero;
+        //キャラクターの位置と角度を初期状態に戻す
+        transform.position = transform.eulerAngles = Vector3.zero;
 
         //カウントを初期化
-        leftLegCount = 0;
+        rightLegCount= leftLegCount = 0;
 
-        //カウントを初期化
-        rightLegCount = 0;
+        //物理演算を再開
+        rb.isKinematic = false;
     }
 }
