@@ -30,15 +30,10 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Transform goalTran;//ゴールの位置情報
 
-    private float timer;//経過時間計測用
+    [SerializeField]
+    private GameManager gameManager;//GameManager
 
-    /// <summary>
-    /// 経過時間取得用
-    /// </summary>
-    public float Timer
-    {
-        get { return timer; }
-    }
+    private float timer;//経過時間計測用
 
     /// <summary>
     /// UIの初期設定を行う
@@ -89,8 +84,8 @@ public class UIManager : MonoBehaviour
     /// <returns>待ち時間</returns>
     public IEnumerator PlayGameClear()
     {
-        //演出が終わったかどうか
-        bool end = false;
+        //「ゴールまでの距離」のテキストを非活性化する
+        txtLength.enabled = false;
 
         //ロゴを「GameClear」に設定
         imgLogo.sprite = sprGameClear;
@@ -98,20 +93,23 @@ public class UIManager : MonoBehaviour
         //背景を表示
         imgBackground.DOFade(1f, 1f);
 
-        //Sequenceを登録
-        Sequence sequence = DOTween.Sequence();
-
         //ロゴを表示
-        sequence.Append(imgLogo.DOFade(1f, 1f));
+        imgLogo.DOFade(1f, 1f);
 
-        //１秒待つ
-        sequence.AppendInterval(1f);
+        //経過時間を適切な位置に移動させる
+        txtTime.transform.DOMoveX(900f, 1f);
+
+        //2秒待つ
+        yield return new WaitForSeconds(2f);
 
         //ロゴを非表示にする
-        sequence.Append(imgLogo.DOFade(0f, 1f)).OnComplete(()=>end=true);
+        imgLogo.DOFade(0f, 1f);
 
-        //演出が終わるまで待つ
-        yield return new WaitUntil(() => end);
+        //経過時間を非表示にする
+        txtTime.DOFade(0f, 1f);
+
+        //2秒待つ
+        yield return new WaitForSeconds(2f);
     }
 
     /// <summary>
@@ -123,6 +121,13 @@ public class UIManager : MonoBehaviour
         //無限に繰り返す
         while(true)
         {
+            //ゲームが終了したら
+            if(gameManager.IsGameClear)
+            {
+                //繰り返し処理を終了する
+                break;
+            }
+
             //ゴールまでの距離を計算して表示
             txtLength.text = (goalTran.position.z - playerTran.position.z).ToString("F2")+"m\nTo Goal";
 

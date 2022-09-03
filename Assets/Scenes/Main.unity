@@ -286,6 +286,7 @@ MonoBehaviour:
   sprGameClear: {fileID: 21300000, guid: 110e0e3255b802b41b924fe8275a3f08, type: 3}
   playerTran: {fileID: 7931308475746686723}
   goalTran: {fileID: 1839597940}
+  gameManager: {fileID: 1515257475}
 --- !u!1 &284472845
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,6 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 390e0b2646f8f6e4eae1d5e766164fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uIManager: {fileID: 194160691}
 --- !u!4 &1515257476
 Transform:
   m_ObjectHideFlags: 0
@@ -12694,9 +12696,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7931308475746686723}
-  - component: {fileID: 7931308475746686722}
   - component: {fileID: 7931308475746686724}
   - component: {fileID: 7931308475746686725}
+  - component: {fileID: 7931308475746686722}
   m_Layer: 0
   m_Name: "\u5343\u4EE3\u6D66\u8776\u7F8E"
   m_TagString: Untagged
@@ -13779,6 +13781,8 @@ MonoBehaviour:
   gravity: 2
   restartKey: 114
   rb: {fileID: 7931308475746686722}
+  gameManager: {fileID: 1515257475}
+  uIManager: {fileID: 194160691}
 --- !u!65 &7931308475746686725
 BoxCollider:
   m_ObjectHideFlags: 0

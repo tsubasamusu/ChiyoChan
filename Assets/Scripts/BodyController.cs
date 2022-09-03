@@ -52,6 +52,12 @@ public class BodyController : MonoBehaviour
     [SerializeField]
     private Rigidbody rb;//Rigidbody
 
+    [SerializeField]
+    private GameManager gameManager;//GameManager
+
+    [SerializeField]
+    private UIManager uIManager;//UIManager
+
     private List<Vector3> firstPartsLocalEulerAnglesList = new List<Vector3>();//各部位の初期の角度
 
     private int rightLegCount;//右足を前に動かす処理が呼び出された回数
@@ -85,6 +91,13 @@ public class BodyController : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
+        //まだゲームが始まっていないなら
+        if(!gameManager.IsGameStart)
+        {
+            //以降の処理を行わない
+            return;
+        }
+
         //「Q」を押されている間
         if (Input.GetKey(KeyCode.Q))
         {
@@ -121,8 +134,8 @@ public class BodyController : MonoBehaviour
         //ゴール用オブジェクトに触れたら
         if(other.gameObject.CompareTag("Goal"))
         {
-            Debug.Log("Clear");
-            //TODO:GameManagerからゲームクリア処理を呼び出す
+            //ゲームクリア処理を行う
+            StartCoroutine(gameManager.SetGameClear());
         }
     }
 
@@ -377,6 +390,9 @@ public class BodyController : MonoBehaviour
 
         //カウントを初期化
         rightLegCount= leftLegCount = 0;
+
+        //経過時間を初期化する
+        uIManager.ResetTimer();
 
         //物理演算を再開
         rb.isKinematic = false;
