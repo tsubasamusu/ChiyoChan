@@ -31,7 +31,7 @@ public class BodyController : MonoBehaviour
     [SerializeField]
     private List<PartsData> partsDataList = new List<PartsData>();//体の部位のデータのリスト
 
-    private List<Transform> firstPartsTransList=new List<Transform>();//各部位の初期の位置情報
+    private List<Vector3> firstPartsLocalEulerAnglesList=new List<Vector3>();//各部位の初期の角度
 
     [SerializeField,Header("一定時間（約0.02秒）ごとに回転させる足の角度"),Range(0f,10f)]
     private float rotAngle;//一定時間（約0.02秒）ごとに回転させる足の角度
@@ -51,6 +51,8 @@ public class BodyController : MonoBehaviour
     [SerializeField]
     private KeyCode restartKey;//ゲーム再スタートキー
 
+    private Transform firstTran;//初期の位置情報
+
     private int rightLegCount;//右足を前に動かす処理が呼び出された回数
 
     private int leftLegCount;//左足を前に動かす処理が呼び出された回数
@@ -62,6 +64,19 @@ public class BodyController : MonoBehaviour
     {
         //BodyControllerの初期設定を行う
         SetUpBodyController();
+    }
+
+    /// <summary>
+    /// 毎フレーム呼び出される
+    /// </summary>
+    private void Update()
+    {
+        //ゲーム再スタートキーが押されたら
+        if (Input.GetKeyDown(restartKey))
+        {
+            //ゲームを再スタートする
+            Restart();
+        }
     }
 
     /// <summary>
@@ -94,13 +109,6 @@ public class BodyController : MonoBehaviour
             //処理を実行
             PlayP();
         }
-
-        //ゲーム再スタートキーが押されたら
-        if (Input.GetKeyDown(restartKey))
-        {
-            //ゲームを再スタートする
-            Restart();
-        }
     }
 
     /// <summary>
@@ -111,8 +119,8 @@ public class BodyController : MonoBehaviour
         //体の部位のデータのリストの要素数だけ繰り返す
         for (int i = 0; i < partsDataList.Count; i++)
         {
-            //繰り返し処理で得た要素の位置情報をリストに登録
-            firstPartsTransList.Add(partsDataList[i].partsTran);
+            //繰り返し処理で得た要素の角度をリストに登録
+            firstPartsLocalEulerAnglesList.Add(partsDataList[i].partsTran.localEulerAngles);
         }
 
         //重力を設定
@@ -339,6 +347,23 @@ public class BodyController : MonoBehaviour
     /// </summary>
     private void Restart()
     {
+        //各部位のデータのリストの要素数だけ繰り返す
+        for (int i = 0; i < partsDataList.Count; i++)
+        {
+            //体の各部位の角度を初期状態に設定
+            partsDataList[i].partsTran.localEulerAngles = firstPartsLocalEulerAnglesList[i];
+        }
 
+        //キャラクターを初期位置に移動させる
+        transform.position = Vector3.zero;
+
+        //キャラクターの角度を初期状態に戻す
+        transform.eulerAngles = Vector3.zero;
+
+        //カウントを初期化
+        leftLegCount = 0;
+
+        //カウントを初期化
+        rightLegCount = 0;
     }
 }
