@@ -136,6 +136,9 @@ public class BodyController : MonoBehaviour
         {
             //ゲームクリア処理を行う
             StartCoroutine(gameManager.SetGameClear());
+
+            //触れた相手を消す（重複処理防止）
+            Destroy(other.gameObject);
         }
     }
 
@@ -396,5 +399,8 @@ public class BodyController : MonoBehaviour
 
         //物理演算を再開
         rb.isKinematic = false;
+
+        //効果音を再生
+        SoundManager.instance.PlaySound(SoundManager.instance.GetAudioClip(SoundManager.SoundName.RestartSE));
     }
 }

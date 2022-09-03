@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIManager uIManager;//UIManager
 
+    private AudioSource aud;//AudioSource
+
     private bool isGameStart;//ゲームが始まったかどうか
 
     private bool isGameClear;//ゲームクリアしたかどうか
@@ -37,8 +39,14 @@ public class GameManager : MonoBehaviour
         //ゲームの初期設定を行う
         SetUpGame();
 
+        //効果音を再生
+        SoundManager.instance.PlaySound(SoundManager.instance.GetAudioClip(SoundManager.SoundName.GameStartSE));
+
         //ゲームスタート演出が終わるまで待つ
         yield return StartCoroutine(uIManager.PlayGameStart());
+
+        //BGMを再生
+        aud= SoundManager.instance.PlaySound(SoundManager.instance.GetAudioClip(SoundManager.SoundName.MainBGM),true);
 
         //テキストの更新を開始する
         StartCoroutine(uIManager.StartUpdateText());
@@ -64,6 +72,12 @@ public class GameManager : MonoBehaviour
     {
         //ゲームクリア状態に切り替える
         isGameClear = true;
+
+        //BGMを止める
+        aud.Stop();
+
+        //効果音を再生
+        SoundManager.instance.PlaySound(SoundManager.instance.GetAudioClip(SoundManager.SoundName.GameClearSE));
 
         //ゲームクリア演出が終わるまで待つ
         yield return StartCoroutine(uIManager.PlayGameClear());
