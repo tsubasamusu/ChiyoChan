@@ -7737,6 +7737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTran: {fileID: 7931308475746686723}
+  smooth: 1
 --- !u!4 &4805270142775812858
 Transform:
   m_ObjectHideFlags: 0
