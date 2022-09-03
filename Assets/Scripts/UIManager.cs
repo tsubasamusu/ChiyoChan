@@ -33,6 +33,14 @@ public class UIManager : MonoBehaviour
     private float timer;//経過時間計測用
 
     /// <summary>
+    /// 経過時間取得用
+    /// </summary>
+    public float Timer
+    {
+        get { return timer; }
+    }
+
+    /// <summary>
     /// UIの初期設定を行う
     /// </summary>
     public void SetUpUI()

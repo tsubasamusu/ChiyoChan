@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
-    private Transform targetTran;//対象物
+    private Transform lookTran;//対象物
 
     [SerializeField]
     private float smooth;//視点移動の滑らかさ
@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         //更新すべき位置を取得
-        Vector3 pos = new Vector3(firstPos.x,firstPos.y,targetTran.position.z);
+        Vector3 pos = new Vector3(firstPos.x,firstPos.y,lookTran.position.z);
 
         //カメラを滑らかに移動させる
         transform.position = Vector3.Lerp(transform.position, pos, Time.fixedDeltaTime * smooth);
