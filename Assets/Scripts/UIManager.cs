@@ -99,6 +99,9 @@ public class UIManager : MonoBehaviour
         //経過時間を適切な位置に移動させる
         txtTime.transform.DOMoveX(900f, 1f);
 
+        //テキストの色を変化させる
+        txtTime.DOColor(Color.blue, 1f);
+
         //2秒待つ
         yield return new WaitForSeconds(2f);
 
