@@ -8,6 +8,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UIManager uIManager;//UIManager
 
+    [SerializeField]
+    private BodyController bodyController;//BodyController
+
+    [SerializeField]
+    private KeyCode restartKey;//ゲーム再スタートキー
+
     private AudioSource aud;//AudioSource
 
     private bool isGameStart;//ゲームが始まったかどうか
@@ -53,6 +59,22 @@ public class GameManager : MonoBehaviour
 
         //ゲーム開始状態に切り替える
         isGameStart = true;
+    }
+
+    /// <summary>
+    /// 毎フレーム呼び出される
+    /// </summary>
+    private void Update()
+    {
+        //ゲーム再スタートキーが押されたら
+        if (Input.GetKeyDown(restartKey))
+        {
+            //キャラクターの状態を初期化する
+            bodyController.ResetCharacterCondition();
+
+            //効果音を再生
+            SoundManager.instance.PlaySound(SoundManager.instance.GetAudioClip(SoundManager.SoundName.RestartSE));
+        }
     }
 
     /// <summary>

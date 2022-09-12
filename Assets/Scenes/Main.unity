@@ -1179,6 +1179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uIManager: {fileID: 194160691}
+  bodyController: {fileID: 7931308475746686724}
+  restartKey: 114
 --- !u!4 &1515257476
 Transform:
   m_ObjectHideFlags: 0
@@ -14164,7 +14166,6 @@ MonoBehaviour:
   minLegAngle: -30
   maxArmAngle: 80
   gravity: 2
-  restartKey: 114
   rb: {fileID: 7931308475746686722}
   gameManager: {fileID: 1515257475}
   uIManager: {fileID: 194160691}

@@ -47,9 +47,6 @@ public class BodyController : MonoBehaviour
     private float gravity;//重力
 
     [SerializeField]
-    private KeyCode restartKey;//ゲーム再スタートキー
-
-    [SerializeField]
     private Rigidbody rb;//Rigidbody
 
     [SerializeField]
@@ -71,19 +68,6 @@ public class BodyController : MonoBehaviour
     {
         //BodyControllerの初期設定を行う
         SetUpBodyController();
-    }
-
-    /// <summary>
-    /// 毎フレーム呼び出される
-    /// </summary>
-    private void Update()
-    {
-        //ゲーム再スタートキーが押されたら
-        if (Input.GetKeyDown(restartKey))
-        {
-            //ゲームを再スタートする
-            Restart();
-        }
     }
 
     /// <summary>
@@ -374,9 +358,9 @@ public class BodyController : MonoBehaviour
     }
 
     /// <summary>
-    /// ゲームを再スタートする
+    /// キャラクターの状態を初期化する
     /// </summary>
-    private void Restart()
+    public void ResetCharacterCondition()
     {
         //一旦、物理演算をクリアにする
         rb.isKinematic = true;
@@ -399,8 +383,5 @@ public class BodyController : MonoBehaviour
 
         //物理演算を再開
         rb.isKinematic = false;
-
-        //効果音を再生
-        SoundManager.instance.PlaySound(SoundManager.instance.GetAudioClip(SoundManager.SoundName.RestartSE));
     }
 }
