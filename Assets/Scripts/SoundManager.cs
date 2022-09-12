@@ -1,7 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Generic;//リストを使用
 using UnityEngine;
 using System;//Serializable属性を使用
+using DG.Tweening;//DOTweenを使用
 
 public class SoundManager : MonoBehaviour
 {
@@ -69,8 +70,7 @@ public class SoundManager : MonoBehaviour
     /// </summary>
     /// <param name="clip">音のクリップ</param>
     /// <param name="loop">繰り返すかどうか</param>
-    /// <returns>使用したAudioSource</returns>
-    public AudioSource PlaySound(AudioClip clip,bool loop=false)
+    public void PlaySound(AudioClip clip,bool loop=false)
     {
         //繰り返すなら（BGMなら）
         if(loop)
@@ -83,18 +83,22 @@ public class SoundManager : MonoBehaviour
 
             //音を再生する
             mainAud.Play();
-
-            //使用したAudioSourceを返す
-            return mainAud;
         }
         //繰り返さないなら（効果音なら
         else
         {
             //音を再生する
             subAud.PlayOneShot(clip);
-
-            //使用したAudioSourceを返す
-            return subAud;
         }
+    }
+
+    /// <summary>
+    /// メインのAusioSourceで再生している音を止める
+    /// </summary>
+    /// <param name="fadeTime">フェードアウト時間</param>
+    public void StopMainSound(float fadeTime=0f)
+    {
+        //音をフェードアウトさせる
+        mainAud.DOFade(0f,fadeTime);
     }
 }

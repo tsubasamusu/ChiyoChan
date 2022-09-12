@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(uIManager.PlayGameStart());
 
         //BGMを再生
-        aud= SoundManager.instance.PlaySound(SoundManager.instance.GetAudioClip(SoundManager.SoundName.MainBGM),true);
+        SoundManager.instance.PlaySound(SoundManager.instance.GetAudioClip(SoundManager.SoundName.MainBGM),true);
 
         //テキストの更新を開始する
         StartCoroutine(uIManager.StartUpdateText());
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         isGameClear = true;
 
         //BGMを止める
-        aud.Stop();
+        SoundManager.instance.StopMainSound(0.5f);
 
         //効果音を再生
         SoundManager.instance.PlaySound(SoundManager.instance.GetAudioClip(SoundManager.SoundName.GameClearSE));

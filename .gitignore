@@ -65,3 +65,4 @@ __pycache__.meta
 *.blend[0-9].meta
 
 .gradle
+WebGL/
