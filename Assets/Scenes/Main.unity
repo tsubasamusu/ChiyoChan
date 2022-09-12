@@ -287,7 +287,6 @@ MonoBehaviour:
   playerTran: {fileID: 7931308475746686723}
   goalTran: {fileID: 1839597940}
   resultTran: {fileID: 877782003}
-  gameManager: {fileID: 1515257475}
 --- !u!1 &284472845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,6 +1179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uIManager: {fileID: 194160691}
   bodyController: {fileID: 7931308475746686724}
+  goalController: {fileID: 1839597945}
   restartKey: 114
 --- !u!4 &1515257476
 Transform:
@@ -13097,8 +13097,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7931308475746686723}
   - component: {fileID: 7931308475746686724}
-  - component: {fileID: 7931308475746686725}
   - component: {fileID: 7931308475746686722}
+  - component: {fileID: 7931308475746686725}
   m_Layer: 0
   m_Name: "\u5343\u4EE3\u6D66\u8776\u7F8E"
   m_TagString: Untagged
@@ -14180,7 +14180,6 @@ MonoBehaviour:
   maxArmAngle: 80
   gravity: 2
   rb: {fileID: 7931308475746686722}
-  gameManager: {fileID: 1515257475}
   uIManager: {fileID: 194160691}
 --- !u!65 &7931308475746686725
 BoxCollider:
@@ -14193,7 +14192,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 0.7}
+  m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &7933628648631254494
 Transform:

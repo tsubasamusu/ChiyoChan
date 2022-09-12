@@ -12,9 +12,10 @@ public class GameManager : MonoBehaviour
     private BodyController bodyController;//BodyController
 
     [SerializeField]
-    private KeyCode restartKey;//ゲーム再スタートキー
+    private GoalController goalController;//GoalController
 
-    private AudioSource aud;//AudioSource
+    [SerializeField]
+    private KeyCode restartKey;//ゲーム再スタートキー
 
     private bool isGameStart;//ゲームが始まったかどうか
 
@@ -57,6 +58,9 @@ public class GameManager : MonoBehaviour
         //テキストの更新を開始する
         StartCoroutine(uIManager.StartUpdateText());
 
+        //キャラクターのコントロールを開始する
+        StartCoroutine(bodyController.StartControlBody());
+
         //ゲーム開始状態に切り替える
         isGameStart = true;
     }
@@ -84,16 +88,34 @@ public class GameManager : MonoBehaviour
     {
         //UIの初期設定を行う
         uIManager.SetUpUI();
+
+        //GoalControllerの初期設定を行う
+        goalController.SetUpGoalController(this);
+
+        //BodyControllerの初期設定を行う
+        bodyController.SetUpBodyController();
+    }
+
+    /// <summary>
+    /// ゲームクリアの準備を行う
+    /// </summary>
+    public void PrepareGameClear()
+    {
+        //ゲームクリア処理を行う
+        StartCoroutine(SetGameClear());
     }
 
     /// <summary>
     /// ゲームクリア処理を行う
     /// </summary>
     /// <returns>待ち時間</returns>
-    public IEnumerator SetGameClear()
+    private IEnumerator SetGameClear()
     {
         //ゲームクリア状態に切り替える
         isGameClear = true;
+
+        //テキストの更新を止める
+        uIManager.StopUpdateText = true;
 
         //BGMを止める
         SoundManager.instance.StopMainSound(0.5f);

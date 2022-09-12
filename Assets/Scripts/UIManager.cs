@@ -33,10 +33,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Transform resultTran;//結果表示位置
 
-    [SerializeField]
-    private GameManager gameManager;//GameManager
-
     private float timer;//経過時間計測用
+
+    private bool stopUpdateText;//テキストの更新を止めるかどうか
+
+    /// <summary>
+    /// テキストの更新停止設定用
+    /// </summary>
+    public bool StopUpdateText
+    { set { stopUpdateText = value; } }
 
     /// <summary>
     /// UIの初期設定を行う
@@ -127,8 +132,8 @@ public class UIManager : MonoBehaviour
         //無限に繰り返す
         while(true)
         {
-            //ゲームが終了したら
-            if(gameManager.IsGameClear)
+            //テキストの更新を止める命令が出たら
+            if(stopUpdateText)
             {
                 //繰り返し処理を終了する
                 break;

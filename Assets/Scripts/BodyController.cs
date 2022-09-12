@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections;//IEnumeratorを使用
 using System.Collections.Generic;//リストを使用
 using UnityEngine;
 using System;//Serializable属性を使用
@@ -50,9 +50,6 @@ public class BodyController : MonoBehaviour
     private Rigidbody rb;//Rigidbody
 
     [SerializeField]
-    private GameManager gameManager;//GameManager
-
-    [SerializeField]
     private UIManager uIManager;//UIManager
 
     private List<Vector3> firstPartsLocalEulerAnglesList = new List<Vector3>();//各部位の初期の角度
@@ -62,74 +59,49 @@ public class BodyController : MonoBehaviour
     private int leftLegCount;//左足を前に動かす処理が呼び出された回数
 
     /// <summary>
-    /// ゲーム開始直後に呼び出される
+    /// キャラクターのコントロールを開始する
     /// </summary>
-    private void Start()
+    /// <returns>待ち時間</returns>
+    public IEnumerator StartControlBody()
     {
-        //BodyControllerの初期設定を行う
-        SetUpBodyController();
-    }
+        //無限に繰り返す
+        while (true)
+        {
+            //「Q」を押されている間
+            if (Input.GetKey(KeyCode.Q))
+            {
+                //処理を実行
+                PlayQ();
+            }
+            //「W」を押されている間
+            else if (Input.GetKey(KeyCode.W))
+            {
+                //処理を実行
+                PlayW();
+            }
 
-    /// <summary>
-    /// 一定時間ごとに呼び出される
-    /// </summary>
-    private void FixedUpdate()
-    {
-        //まだゲームが始まっていないなら
-        if(!gameManager.IsGameStart)
-        {
-            //以降の処理を行わない
-            return;
-        }
+            //「O」を押されている間
+            if (Input.GetKey(KeyCode.O))
+            {
+                //処理を実行
+                PlayO();
+            }
+            //「P」を押されている間
+            else if (Input.GetKey(KeyCode.P))
+            {
+                //処理を実行
+                PlayP();
+            }
 
-        //「Q」を押されている間
-        if (Input.GetKey(KeyCode.Q))
-        {
-            //処理を実行
-            PlayQ();
-        }
-        //「W」を押されている間
-        else if (Input.GetKey(KeyCode.W))
-        {
-            //処理を実行
-            PlayW();
-        }
-
-        //「O」を押されている間
-        if (Input.GetKey(KeyCode.O))
-        {
-            //処理を実行
-            PlayO();
-        }
-        //「P」を押されている間
-        else if (Input.GetKey(KeyCode.P))
-        {
-            //処理を実行
-            PlayP();
-        }
-    }
-
-    /// <summary>
-    /// 他のコライダーがすり抜けた際に呼び出される
-    /// </summary>
-    /// <param name="other">触れた相手</param>
-    private void OnTriggerEnter(Collider other)
-    {
-        //ゴール用オブジェクトに触れたら
-        if(other.gameObject.CompareTag("Goal"))
-        {
-            //ゲームクリア処理を行う
-            StartCoroutine(gameManager.SetGameClear());
-
-            //触れた相手を消す（重複処理防止）
-            Destroy(other.gameObject);
+            //一定時間待つ（実質、FixedUpdateメソッド）
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
     }
 
     /// <summary>
     /// BodyControllerの初期設定を行う
     /// </summary>
-    private void SetUpBodyController()
+    public void SetUpBodyController()
     {
         //体の部位のデータのリストの要素数だけ繰り返す
         for (int i = 0; i < partsDataList.Count; i++)
