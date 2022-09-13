@@ -2,6 +2,7 @@ using System.Collections;//IEnumeratorを使用
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;//LoadSceneメソッドを使用
+using Tsubasa;//CameraControllerを使用
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GoalController goalController;//GoalController
+
+    [SerializeField]
+    private CameraController cameraController;//CameraController
 
     [SerializeField]
     private KeyCode restartKey;//ゲーム再スタートキー
@@ -86,6 +90,9 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void SetUpGame()
     {
+        //CameraControllerの初期設定を行う
+        cameraController.SetUpCameraController();
+
         //UIの初期設定を行う
         uIManager.SetUpUI();
 

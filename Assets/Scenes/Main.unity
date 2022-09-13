@@ -1180,6 +1180,7 @@ MonoBehaviour:
   uIManager: {fileID: 194160691}
   bodyController: {fileID: 7931308475746686724}
   goalController: {fileID: 1839597945}
+  cameraController: {fileID: 4797549782896624359}
   restartKey: 114
 --- !u!4 &1515257476
 Transform:
@@ -14180,7 +14181,6 @@ MonoBehaviour:
   maxArmAngle: 80
   gravity: 2
   rb: {fileID: 7931308475746686722}
-  uIManager: {fileID: 194160691}
 --- !u!65 &7931308475746686725
 BoxCollider:
   m_ObjectHideFlags: 0
