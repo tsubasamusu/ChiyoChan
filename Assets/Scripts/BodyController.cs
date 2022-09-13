@@ -49,9 +49,6 @@ public class BodyController : MonoBehaviour
     [SerializeField]
     private Rigidbody rb;//Rigidbody
 
-    [SerializeField]
-    private UIManager uIManager;//UIManager
-
     private List<Vector3> firstPartsLocalEulerAnglesList = new List<Vector3>();//各部位の初期の角度
 
     private int rightLegCount;//右足を前に動かす処理が呼び出された回数
@@ -332,7 +329,8 @@ public class BodyController : MonoBehaviour
     /// <summary>
     /// キャラクターの状態を初期化する
     /// </summary>
-    public void ResetCharacterCondition()
+    /// <param name="uIManager">UIManager</param>
+    public void ResetCharacterCondition(UIManager uIManager)
     {
         //一旦、物理演算をクリアにする
         rb.isKinematic = true;

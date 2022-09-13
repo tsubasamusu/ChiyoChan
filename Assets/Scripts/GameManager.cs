@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(restartKey))
         {
             //キャラクターの状態を初期化する
-            bodyController.ResetCharacterCondition();
+            bodyController.ResetCharacterCondition(uIManager);
 
             //効果音を再生
             SoundManager.instance.PlaySound(SoundManager.instance.GetAudioClip(SoundManager.SoundName.RestartSE));
